@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('./partials/head.ejs') %>
+	<body>
+		<%- include('./partials/header.ejs', {page: "home"}) %>
+		<div class="container m-5">
+			<h1 >The Books List</h1>
+		</div>
+		<div class="container row row-cols-1 row-cols-md-2 g-1 m-5">
+				<% books.forEach(book => { %>
+			<div class="col">
+				<div class="card">
+					<!-- <img src="..." class="card-img-top" alt="..." /> -->
+					<div class="card-body">
+						<h5 class="card-title">Title: <%= book.title %></h5>
+						<p class="card-text"><strong>Author:</strong>  <%= book.author %></hp>
+						<p class="card-text"><strong>Summary:</strong> <%= book.summary %></p>
+						<p class="card-text">
+							Published on: <%= book.publishDate %>
+						</p>
+					</div>
+				</div>
+			</div>
+			<% }) %>
+		</div>
+	</body>
+</html>

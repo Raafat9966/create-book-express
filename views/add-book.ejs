@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<%- include('./partials/head.ejs') %>
+	<body>
+		<%- include('./partials/header.ejs', {page: ""}) %>
+		<div class="container book-form">
+			<form action="/addbook" method="POST">
+				<div class="mb-3">
+					<label for="title" class="form-label">Book Title</label>
+					<input
+						type="text"
+						class="form-control"
+						id="title"
+						name="title"
+						placeholder="Enter the title here..."
+					/>
+				</div>
+				<div class="mb-3">
+					<label for="author" class="form-label">Book Author</label>
+					<input
+						type="text"
+						class="form-control"
+						id="author"
+						name="author"
+						placeholder="Enter the Author name here..."
+					/>
+				</div>
+				<div class="mb-3">
+					<label for="publishDate" class="form-label"
+						>Publish Date</label
+					>
+					<input
+						type="number"
+						class="form-control"
+						id="publishDate"
+						name="publishDate"
+						min="1800"
+						max="2099"
+						step="1"
+						value="2016"
+					/>
+				</div>
+				<div class="mb-3">
+					<label for="summary" class="form-label">Book Summary</label>
+					<textarea
+						class="form-control"
+						id="summary"
+						name="summary"
+						rows="3"
+						placeholder="Write Book Summary here..."
+					></textarea>
+				</div>
+				<div class="mb-3">
+					<button type="submit" class="btn btn-primary">
+						Add the Book
+					</button>
+					<% if(locals.message){ %>
+					<div
+						class="alert alert-success alert-dismissible fade show p-2 mt-2"
+						role="alert"
+					>
+						<p class="m-0"><%=message.success%></p>
+						<button
+							type="button"
+							class="btn-close btn-sm p-2 m-1"
+							data-bs-dismiss="alert"
+							aria-label="Close"
+						></button>
+					</div>
+					<% } %>
+				</div>
+			</form>
+		</div>
+		<script>
+			if (window.history.replaceState) {
+				window.history.replaceState(null, null, window.location.href);
+			}
+		</script>
+	</body>
+</html>
