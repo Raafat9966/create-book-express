@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 // * the connection string to mongodb
-require("dotenv").config();
-const uri = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.gajnn.gcp.mongodb.net/book-database?retryWrites=true&w=majority`;
+const uri = process.env.MONGODB_URI;
 
 // * creating the schema for the documents
 const Schema = mongoose.Schema;
@@ -40,6 +40,7 @@ const connect = () => {
 					useNewUrlParser: true,
 				})
 				.then(() => {
+					console.log("mongoDB started");
 					res();
 				})
 				.catch((err) => rej(err));
@@ -53,7 +54,7 @@ const connect = () => {
  * @param {String} title
  * @param {String} author
  * @param {String} summary
- * @param {String} publishDate
+ * @param {number} publishDate
  */
 const addBook = (title, author, summary, publishDate) => {
 	return new Promise((res, rej) => {

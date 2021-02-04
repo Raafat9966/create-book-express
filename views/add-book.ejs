@@ -4,7 +4,7 @@
 	<body>
 		<%- include('./partials/header.ejs', {page: ""}) %>
 		<div class="container book-form">
-			<form action="/addbook" method="POST" enctype="multipart/form-data">
+			<form action="/addbook" method="POST">
 				<div class="mb-3">
 					<label for="title" class="form-label">Book Title</label>
 					<input
@@ -40,7 +40,7 @@
 						value="2016"
 					/>
 				</div>
-				<div class="mb-3">
+				<!-- <div class="mb-3">
 					<label for="file" class="form-label">Upload file</label>
 					<input
 						type="file"
@@ -48,7 +48,7 @@
 						id="file"
 						name="file"
 					/>
-				</div>
+				</div> -->
 				<div class="mb-3">
 					<label for="summary" class="form-label">Book Summary</label>
 					<textarea

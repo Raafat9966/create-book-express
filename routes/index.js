@@ -26,7 +26,8 @@ module.exports = () => {
 	});
 
 	router.get("/find", (req, res) => {
-		var bookSearch = req.param("search");
+		var bookSearch = req.query.search;
+		console.log(req.query);
 		db.findBook(bookSearch)
 			.then((books) => res.status(200).render("home", { books }))
 			.catch((error) => res.status(500).render("home", { books: [] }));
