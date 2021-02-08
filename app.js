@@ -1,8 +1,7 @@
 const express = require("express");
-const ejs = require("ejs");
-const httpErrors = require("http-errors");
 const moment = require("moment");
 const path = require("path");
+const morgan = require("morgan");
 const app = express();
 const router = require("./routes/index");
 
@@ -14,6 +13,7 @@ const flash = require("connect-flash");
 app.use(cookieParser("secret"));
 app.use(session({ cookie: { maxAge: 5000 } }));
 app.use(flash());
+app.use(morgan("dev"));
 
 // * config the .env file
 require("dotenv").config();

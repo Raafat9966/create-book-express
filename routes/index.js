@@ -1,6 +1,9 @@
 const router = require("express").Router();
 const db = require("../models/db");
 
+// const httpErrors = require("http-errors");
+// createError(401, 'Please login to view this page.')
+
 module.exports = () => {
 	// * create home page route
 	router.get("/", (req, res) => {
