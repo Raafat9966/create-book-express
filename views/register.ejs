@@ -2,10 +2,10 @@
 <html lang="en">
 	<%- include('./partials/head.ejs') %>
 	<body>
-		<%- include('./partials/header.ejs', {page: "home"}) %>
+		<%- include('./partials/header.ejs', {page: "register"}) %>
 		<div class="container book-form">
-			<form action="/user/login" method="POST">
-				<h2>Login</h2>
+			<form action="/user/register" method="POST">
+				<h2>Register</h2>
 				<div class="mb-3">
 					<label for="name" class="form-label">name</label>
 					<input
@@ -27,7 +27,9 @@
 					/>
 				</div>
 				<div class="mb-3">
-					<button type="submit" class="btn btn-primary">Login</button>
+					<button type="submit" class="btn btn-primary">
+						Register
+					</button>
 					<% if(locals.message){ %>
 					<div
 						class="alert alert-success alert-dismissible fade show p-2 mt-2"

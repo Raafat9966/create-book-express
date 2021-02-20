@@ -1,9 +1,12 @@
 const express = require("express");
-const moment = require("moment");
 const path = require("path");
 const morgan = require("morgan");
 const app = express();
-const router = require("./routes/index");
+const bookRouter = require("./routes/bookRoute");
+const userRouter = require("./routes/userRouter");
+require("./lib/db");
+
+const verifyToken = require("./middleware/verifyToken");
 
 // * creating the message after the submit
 const session = require("express-session");
@@ -30,7 +33,12 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "/public")));
 
 // * handle the created routes
-app.use("/", router());
+app.use("/books", verifyToken, bookRouter);
+app.use("/user", userRouter);
+
+app.get("/", (req, res) => {
+	res.render("home");
+});
 
 // * handling 404 page not found error
 app.use((req, res, next) =>
@@ -38,6 +46,4 @@ app.use((req, res, next) =>
 );
 
 // * Starting the server on the port
-app.listen(port, () =>
-	console.log(`Server is running on http://localhost:${port}`)
-);
+app.listen(port, () => console.log(`http://localhost:${port}`));
