@@ -18,6 +18,9 @@
 						<p class="card-text">
 							Published on: <%= book.publishDate %>
 						</p>
+						<form method="POST" action="/books/<%= book._id %>?_method=DELETE">
+							<button class="btn btn-warning" type="submit">Delete</button>
+						</form>
 					</div>
 				</div>
 			</div>

@@ -68,9 +68,18 @@ const findBook = (query) => {
 	});
 };
 
+const deleteBook = (id) => {
+	return new Promise((res, rej) => {
+		Book.findByIdAndDelete({ _id: id })
+			.then(() => res("success"))
+			.catch((err) => rej(err));
+	});
+};
+
 // * export the modules
 module.exports = {
 	addBook,
 	getBooks,
 	findBook,
+	deleteBook,
 };

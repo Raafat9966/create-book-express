@@ -28,12 +28,25 @@
 				</div>
 				<div class="mb-3">
 					<button type="submit" class="btn btn-primary">Login</button>
-					<% if(locals.message){ %>
+					<% if(locals.message && message.user){ %>
+					<div
+						class="alert alert-danger alert-dismissible fade show p-2 mt-2"
+						role="alert"
+					>
+						<p class="m-0"><%=message.user%></p>
+						<button
+							type="button"
+							class="btn-close btn-sm p-2 m-1"
+							data-bs-dismiss="alert"
+							aria-label="Close"
+						></button>
+					</div>
+					<% } else if(locals.message && message.newUser){ %>
 					<div
 						class="alert alert-success alert-dismissible fade show p-2 mt-2"
 						role="alert"
 					>
-						<p class="m-0"><%=message.useradd%></p>
+						<p class="m-0"><%=message.newUser%></p>
 						<button
 							type="button"
 							class="btn-close btn-sm p-2 m-1"

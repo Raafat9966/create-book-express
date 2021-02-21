@@ -2,9 +2,9 @@
 <html lang="en">
 	<%- include('./partials/head.ejs') %>
 	<body>
-		<%- include('./partials/header.ejs', {page: ""}) %>
+		<%- include('./partials/header.ejs', {page: "add-book"}) %>
 		<div class="container book-form">
-			<form action="/add-book" method="POST">
+			<form action="/books/add-book" method="POST">
 				<div class="mb-3">
 					<label for="title" class="form-label">Book Title</label>
 					<input

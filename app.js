@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
+const methodOverride = require("method-override");
 const app = express();
 const bookRouter = require("./routes/bookRoute");
 const userRouter = require("./routes/userRouter");
@@ -13,6 +14,7 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
 
+app.use(methodOverride("_method"));
 app.use(cookieParser("secret"));
 app.use(session({ cookie: { maxAge: 5000 } }));
 app.use(flash());

@@ -26,14 +26,17 @@ const addUser = async (name, password) => {
 
 const loginUser = async (name, password) => {
 	let user = await User.findOne({ name });
+
 	if (!user) {
-		console.log("user is not registered");
+		console.log(`${name} is not registered`);
+		return "name";
 	} else {
 		let result = bcrypt.compareSync(password, user.password);
 		if (!result) {
 			console.log("password doesn't match");
+			return "password";
 		} else {
-			return user;
+			return "pass";
 		}
 	}
 };

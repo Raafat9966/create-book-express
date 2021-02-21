@@ -30,7 +30,7 @@ router.post("/add-book", (req, res) => {
 router.get("/find", async (req, res) => {
 	try {
 		var bookSearch = req.query.search;
-		console.log(req.query);
+
 		let books = await db.findBook(bookSearch);
 		console.log(books);
 		if (books.length === 0) {
@@ -40,6 +40,16 @@ router.get("/find", async (req, res) => {
 		} else res.status(200).render("books", { books });
 	} catch (err) {
 		res.status(500).render("books", { err });
+	}
+});
+
+router.delete("/:id", async (req, res) => {
+	console.log(req.params.id);
+	try {
+		await db.deleteBook(req.params.id);
+		res.redirect("/books");
+	} catch (err) {
+		res.status(500).send(err);
 	}
 });
 
