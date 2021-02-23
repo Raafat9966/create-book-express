@@ -29,7 +29,7 @@ router.post("/add-book", (req, res) => {
 
 router.get("/find", async (req, res) => {
 	try {
-		var bookSearch = req.query.search;
+		let bookSearch = req.query.search;
 
 		let books = await db.findBook(bookSearch);
 		console.log(books);
@@ -44,13 +44,34 @@ router.get("/find", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-	console.log(req.params.id);
 	try {
 		await db.deleteBook(req.params.id);
 		res.redirect("/books");
 	} catch (err) {
 		res.status(500).send(err);
 	}
+});
+
+router.get("/edit/:id", async (req, res) => {
+	console.log(req.params.id);
+	try {
+		let book = await db.findBookById(req.params.id);
+		console.log(book);
+		res.status(200).render("edit-book", { book });
+	} catch (err) {
+		res.status(500).render("edit-book", { err });
+	}
+});
+
+router.put("/edit/:id", async (req, res) => {
+	let { title, author, summary, publishDate } = req.body;
+	db.editBook(req.params.id, title, author, summary, publishDate)
+		.then((book) => {
+			req.flash("success", "The Book has been edited.");
+			res.locals.message = req.flash();
+			res.status(200).render("edit-book", { book });
+		})
+		.catch((err) => res.status(400).send(err));
 });
 
 module.exports = router;

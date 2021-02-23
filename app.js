@@ -3,6 +3,8 @@ const path = require("path");
 const morgan = require("morgan");
 const methodOverride = require("method-override");
 
+const errorHandler = require("./middleware/errorHandle.js");
+
 const app = express();
 const bookRouter = require("./routes/bookRoute");
 const userRouter = require("./routes/userRouter");
@@ -20,6 +22,7 @@ app.use(cookieParser("secret"));
 app.use(session({ cookie: { maxAge: 5000 } }));
 app.use(flash());
 app.use(morgan("dev"));
+app.use(errorHandler);
 
 // * config the .env file
 require("dotenv").config();

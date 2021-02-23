@@ -5,6 +5,17 @@
 		<%- include('./partials/header.ejs', {page: "books"}) %>
 		<div class="container m-5">
 			<h1 >The Books List</h1>
+			<div class="container w-25">
+				<% if(locals.message){ %>
+					<div
+						class="alert alert-danger alert-dismissible fade show p-2 mt-2"
+						role="alert"
+					>
+						<p class="m-0"><%=message.missing%></p>
+						
+					</div>
+					<% } %>
+			</div>
 		</div>
 		<div class="container row row-cols-1 row-cols-md-2 g-1 m-5">
 				<% books.forEach(book => { %>
@@ -16,27 +27,20 @@
 						<p class="card-text"><strong>Author:</strong>  <%= book.author %></hp>
 						<p class="card-text"><strong>Summary:</strong> <%= book.summary %></p>
 						<p class="card-text">
-							Published on: <%= book.publishDate %>
+							<strong>Published on:</strong>  <%= book.publishDate %>
 						</p>
 						<form method="POST" action="/books/<%= book._id %>?_method=DELETE">
-							<button class="btn btn-warning" type="submit">Delete</button>
+							<button class="btn btn-danger" type="submit">Delete</button>
+						</form>
+						<form method="GET" action="/books/edit/<%= book._id %>">
+							<button class="btn btn-warning" type="submit">Edit</button>
 						</form>
 					</div>
 				</div>
 			</div>
 			<% }) %>
 		</div>
-		<div class="container w-25">
-			<% if(locals.message){ %>
-				<div
-					class="alert alert-danger alert-dismissible fade show p-2 mt-2"
-					role="alert"
-				>
-					<p class="m-0"><%=message.missing%></p>
-					
-				</div>
-				<% } %>
-		</div>
+		
 		
 	</body>
 </html>

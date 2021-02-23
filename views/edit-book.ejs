@@ -4,7 +4,12 @@
 	<body>
 		<%- include('./partials/header.ejs', {page: "add-book"}) %>
 		<div class="container book-form">
-			<form class="w-100" action="/books/add-book" method="POST">
+			<form
+				class="w-100"
+				method="POST"
+				action="/books/edit/<%= book._id %>?_method=PUT"
+			>
+				<h1></h1>
 				<div class="mb-3">
 					<label for="title" class="form-label">Book Title</label>
 					<input
@@ -12,7 +17,7 @@
 						class="form-control"
 						id="title"
 						name="title"
-						placeholder="Enter the title here..."
+						value="<%= book.title %>"
 					/>
 				</div>
 				<div class="mb-3">
@@ -22,7 +27,7 @@
 						class="form-control"
 						id="author"
 						name="author"
-						placeholder="Enter the Author name here..."
+						value="<%= book.author %>"
 					/>
 				</div>
 				<div class="mb-3">
@@ -37,7 +42,7 @@
 						min="1800"
 						max="2099"
 						step="1"
-						placeholder="Enter the release date here..."
+						value="<%= book.publishDate %>"
 					/>
 				</div>
 				<!-- <div class="mb-3">
@@ -56,12 +61,13 @@
 						id="summary"
 						name="summary"
 						rows="5"
-						placeholder="Write Book Summary here..."
-					></textarea>
+					>
+<%= book.summary %></textarea
+					>
 				</div>
 				<div class="mb-3">
 					<button type="submit" class="btn btn-primary">
-						Add the Book
+						Edit the Book
 					</button>
 					<% if(locals.message){ %>
 					<div

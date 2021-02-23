@@ -4,7 +4,9 @@ const verifyToken = async (req, res, next) => {
 	try {
 		const authCookie = req.cookies.authCookie;
 		if (!authCookie) {
-			res.status(403).send("login first");
+			req.flash("newUser", "You must login first.");
+			res.locals.message = req.flash();
+			res.status(403).render("home");
 		} else {
 			jwt.verify(authCookie, "secret");
 			next();

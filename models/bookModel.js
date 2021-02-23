@@ -76,10 +76,38 @@ const deleteBook = (id) => {
 	});
 };
 
+const findBookById = (id) => {
+	return new Promise((res, rej) => {
+		Book.findById({ _id: id })
+			.then((book) => {
+				res(book);
+			})
+			.catch((err) => rej(err));
+	});
+};
+
+const editBook = (id, title, author, summary, publishDate) => {
+	return new Promise((res, rej) => {
+		Book.findByIdAndUpdate(
+			{ _id: id },
+			{ title, author, summary, publishDate },
+			{ new: true }
+		)
+			.then((book) => {
+				res(book);
+			})
+			.catch((err) => {
+				rej(err);
+			});
+	});
+};
+
 // * export the modules
 module.exports = {
 	addBook,
 	getBooks,
 	findBook,
 	deleteBook,
+	findBookById,
+	editBook,
 };

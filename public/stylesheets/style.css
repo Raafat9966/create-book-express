@@ -13,3 +13,7 @@
 	margin: 0 auto;
 	color: #910091;
 }
+
+form {
+	display: inline-grid;
+}
