@@ -17,3 +17,7 @@
 form {
 	display: inline-grid;
 }
+
+img {
+	max-height: 20rem;
+}
