@@ -16,9 +16,9 @@ router.get("/add-book", (req, res) => res.status(200).render("add-book"));
 
 // * post request to add book in the mongoDB
 router.post("/add-book", (req, res) => {
-	let { title, author, summary, publishDate } = req.body;
+	let { title, author, summary, publishDate, image } = req.body;
 
-	db.addBook(title, author, summary, publishDate)
+	db.addBook(title, author, summary, publishDate, image)
 		.then(() => {
 			req.flash("success", "The Book has been added.");
 			res.locals.message = req.flash();

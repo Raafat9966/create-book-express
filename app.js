@@ -52,4 +52,4 @@ app.use((req, res, next) =>
 );
 
 // * Starting the server on the port
-app.listen(port, () => console.log(`http://localhost:${port}`));
+app.listen(port);

@@ -19,6 +19,9 @@ const bookSchema = new Schema({
 		required: true,
 		type: Number,
 	},
+	image: {
+		type: String,
+	},
 });
 
 const Book = mongoose.model("books", bookSchema);
@@ -31,13 +34,14 @@ const Book = mongoose.model("books", bookSchema);
  * @param {String} summary
  * @param {number} publishDate
  */
-const addBook = (title, author, summary, publishDate) => {
+const addBook = (title, author, summary, publishDate, image) => {
 	return new Promise((res, rej) => {
 		const book = new Book({
 			title,
 			author,
 			summary,
 			publishDate,
+			image,
 		});
 		book.save()
 			.then(() => {
