@@ -3,7 +3,7 @@ const path = require("path");
 const morgan = require("morgan");
 const methodOverride = require("method-override");
 
-const errorHandler = require("./middleware/errorHandle.js");
+const errorHandler = require("./middleware/errorhandler");
 
 const app = express();
 const bookRouter = require("./routes/bookRoute");
